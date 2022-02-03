@@ -30,16 +30,21 @@
     <div id="clients_container">
     <?php
         require_once('Client.php');
+        $conexion = PersistenciaClientFactory::createPersistencia('mysql', new mysqli('localhost', 'root', 'Burgos-11', 'Dependency_Injection'));
         $visor = VisorClientFactory::createVisor("html");
-        $client = new Client($visor);
+        $client = new Client($visor, $conexion);
+
         $client->setNom("Xavi");
         $client->setCognoms("Quesada");
         $client->setDni("12345678A");
+        $client
         echo $client->toString();
+
         $client->setNom("Anna");
         $client->setCognoms("Lea");
         $client->setDni("22345678A");
         echo $client->toString();
+
         $client->setNom("Cristian");
         $client->setCognoms("Montañés");
         $client->setDni("32345678A");
